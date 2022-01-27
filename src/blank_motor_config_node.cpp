@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 	control_publisher = node->advertise<rio_control_node::Motor_Control>("MotorControl", 1);
 	config_publisher = node->advertise<rio_control_node::Motor_Configuration>("MotorConfiguration", 1);
 
-	enabled = node->getParam("motor_ids", motor_ids);
+	enabled = node->getParam("/blank_motor_config_node/motor_ids", motor_ids);
 
 	ros::spin();
 	return 0;
