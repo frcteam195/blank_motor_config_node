@@ -44,6 +44,14 @@ void init_messages()
 			motor_config.controller_mode = rio_control_node::Motor_Config::FOLLOWER;
 			motor_config.invert_type = rio_control_node::Motor_Config::OPPOSE_MASTER;
 		}
+		if(motor_config.id == 13)
+		{
+			motor_config.closed_loop_ramp = 2.5;
+			motor_config.peak_output_reverse = 0.3;
+			motor_config.kP = 0.03;
+			motor_config.kD = 0.04;
+			motor_config.kF = 0.047651;
+		}
 		motor_config.neutral_mode = rio_control_node::Motor_Config::COAST;
 		motor_config.voltage_compensation_saturation = 12.0;
 		motor_config.voltage_compensation_enabled = true;
