@@ -39,6 +39,11 @@ void init_messages()
 		motor_config.controller_type = rio_control_node::Motor_Config::TALON_FX;
 		motor_config.controller_mode = rio_control_node::Motor_Config::MASTER;
 		motor_config.invert_type = rio_control_node::Motor_Config::NONE;
+		if(motor_config.id == 14)
+		{
+			motor_config.controller_mode = rio_control_node::Motor_Config::FOLLOWER;
+			motor_config.invert_type = rio_control_node::Motor_Config::OPPOSE_MASTER;
+		}
 		motor_config.neutral_mode = rio_control_node::Motor_Config::COAST;
 		motor_config.voltage_compensation_saturation = 12.0;
 		motor_config.voltage_compensation_enabled = true;
@@ -49,7 +54,24 @@ void init_messages()
 		motor_control.id = (*i);
 		motor_control.controller_type = rio_control_node::Motor::TALON_FX;
 		motor_control.output_value = 0;
-		motor_control.control_mode = rio_control_node::Motor::PERCENT_OUTPUT;
+		if(motor_control.id == 8 || motor_control.id == 12)
+		{
+			motor_control.control_mode = rio_control_node::Motor::POSITION;
+		}
+		else if(motor_control.id == 13)
+		{
+			motor_control.control_mode = rio_control_node::Motor::VELOCITY;
+		}
+		else if(motor_control.id == 14)
+		{
+			motor_control.control_mode = rio_control_node::Motor::FOLLOWER;
+			motor_control.output_value = 13;
+		}
+		else
+		{
+			motor_control.control_mode = rio_control_node::Motor::PERCENT_OUTPUT;
+		}
+		
 
 		control_msg.motors.push_back(motor_control);
 	}
