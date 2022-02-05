@@ -64,7 +64,7 @@ void init_messages()
 		motor_control.output_value = 0;
 		if(motor_control.id == 8 || motor_control.id == 12)
 		{
-			motor_control.control_mode = rio_control_node::Motor::POSITION;
+			motor_control.control_mode = rio_control_node::Motor::MOTION_MAGIC;
 		}
 		else if(motor_control.id == 13)
 		{
